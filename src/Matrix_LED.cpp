@@ -22,9 +22,9 @@ void MLED::display() {
 		sendData(i, disBuffer[i]);
 
 		digitalWrite(_mosi, LOW);
-  	digitalWrite(_sclk, LOW);
-  	digitalWrite(_sclk, HIGH);
-  	digitalWrite(_mosi, HIGH);
+		digitalWrite(_sclk, LOW);
+		digitalWrite(_sclk, HIGH);
+		digitalWrite(_mosi, HIGH);
 	}
 
 	sendCommand(0x88 | _intensity);

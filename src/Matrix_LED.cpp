@@ -2,51 +2,51 @@
 
 MLED::MLED(uint8_t mled_intensity, uint8_t mled_mosi, uint8_t mled_sclk) {
 	_mosi = mled_mosi;
-	_sclk = mled_sclk;
+  _sclk = mled_sclk;
 
-	if (mled_intensity > 7) {
-		_intensity = 7;
-	} else {
-		_intensity = mled_intensity;
-	}
+  if (mled_intensity > 7) {
+  	_intensity = 7;
+  } else {
+  	_intensity = mled_intensity;
+  }
 
-	pinMode(_mosi, OUTPUT);
-	pinMode(_sclk, OUTPUT);
-	
-	digitalWrite(_mosi, HIGH);
-	digitalWrite(_sclk, HIGH);
+  pinMode(_mosi, OUTPUT);
+  pinMode(_sclk, OUTPUT);
+    
+  digitalWrite(_mosi, HIGH);
+  digitalWrite(_sclk, HIGH);
 }
 
 /* High level commands, for the user! */
 
 void MLED::display() {
 	for (uint8_t i = 0; i < 8; i++) {
-		sendData(i, disBuffer[i]);
+  	sendData(i, disBuffer[i]);
 
-		digitalWrite(_mosi, LOW);
-		digitalWrite(_sclk, LOW);
-		digitalWrite(_sclk, HIGH);
-		digitalWrite(_mosi, HIGH);
-	}
+    digitalWrite(_mosi, LOW);
+    digitalWrite(_sclk, LOW);
+    digitalWrite(_sclk, HIGH);
+    digitalWrite(_mosi, HIGH);
+  }
 
-	sendCommand(0x88 | _intensity);
+  sendCommand(0x88 | _intensity);
 }
 
 void MLED::clear() {
-	for (uint8_t i = 0; i < 8; i++) {
-		disBuffer[i] = 0x00;
+  for (uint8_t i = 0; i < 8; i++) {
+  	disBuffer[i] = 0x00;
 	}
 }
 
 void MLED::dot(uint8_t x, uint8_t y, bool draw) {
 	x &= 0x07;
-	y &= 0x07;
+  y &= 0x07;
 
-	if (draw) {
-		disBuffer[y] |= (1 << x);
-	} else {
-		disBuffer[y] &= ~(1 << x);
-	}
+  if (draw) {
+  	disBuffer[y] |= (1 << x);
+  } else {
+    disBuffer[y] &= ~(1 << x);
+  }
 }
 
 /* Low level data pushing commands */

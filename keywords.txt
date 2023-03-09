@@ -1,5 +1,5 @@
 #######################################
-# Syntax Coloring Map For Motor
+# Syntax Coloring Map For Matrix_LED
 #######################################
 
 #######################################
@@ -21,7 +21,4 @@ dot	KEYWORD2
 #######################################
 
 disBuffer	LITERAL1
-intensity	LITERAL1
-
-
-
+_intensity	LITERAL1

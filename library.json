@@ -1,0 +1,11 @@
+{
+  "name": "Matrix LED Shield",
+  "description": "Library for the WEMOS Matrix LED Shield.",
+  "keywords": "Matrix, LED, IPS",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/r3mko/Matrix_LED_Shield"
+  },
+  "platforms": ["atmelavr", "espressif8266", "espressif32"]
+}

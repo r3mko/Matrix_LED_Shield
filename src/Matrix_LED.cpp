@@ -17,6 +17,8 @@ MLED::MLED(uint8_t mled_intensity, uint8_t mled_mosi, uint8_t mled_sclk) {
 	digitalWrite(_sclk, HIGH);
 }
 
+/* High level commands, for the user! */
+
 void MLED::display() {
 	for (uint8_t i = 0; i < 8; i++) {
 		sendData(i, disBuffer[i]);
@@ -46,6 +48,8 @@ void MLED::dot(uint8_t x, uint8_t y, bool draw) {
 		disBuffer[y] &= ~(1 << x);
 	}
 }
+
+/* Low level data pushing commands */
 
 void MLED::sendCommand(byte cmd) {
   digitalWrite(_mosi, LOW);

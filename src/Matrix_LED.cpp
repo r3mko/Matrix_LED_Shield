@@ -1,13 +1,13 @@
 #include "Matrix_LED.h"
 
 MLED::MLED(uint8_t mled_intensity, uint8_t mled_mosi, uint8_t mled_sclk) {
-	_mosi = mled_mosi;
+  _mosi = mled_mosi;
   _sclk = mled_sclk;
 
   if (mled_intensity > 7) {
-  	_intensity = 7;
+    _intensity = 7;
   } else {
-  	_intensity = mled_intensity;
+    _intensity = mled_intensity;
   }
 
   pinMode(_mosi, OUTPUT);
@@ -20,8 +20,8 @@ MLED::MLED(uint8_t mled_intensity, uint8_t mled_mosi, uint8_t mled_sclk) {
 /* High level commands, for the user! */
 
 void MLED::display() {
-	for (uint8_t i = 0; i < 8; i++) {
-  	sendData(i, disBuffer[i]);
+  for (uint8_t i = 0; i < 8; i++) {
+    sendData(i, disBuffer[i]);
 
     digitalWrite(_mosi, LOW);
     digitalWrite(_sclk, LOW);
@@ -34,16 +34,16 @@ void MLED::display() {
 
 void MLED::clear() {
   for (uint8_t i = 0; i < 8; i++) {
-  	disBuffer[i] = 0x00;
-	}
+    disBuffer[i] = 0x00;
+  }
 }
 
 void MLED::dot(uint8_t x, uint8_t y, bool draw) {
-	x &= 0x07;
+  x &= 0x07;
   y &= 0x07;
 
   if (draw) {
-  	disBuffer[y] |= (1 << x);
+    disBuffer[y] |= (1 << x);
   } else {
     disBuffer[y] &= ~(1 << x);
   }
